@@ -38,6 +38,22 @@ public class Store {
         return null;
     }
 
+    public Item findCheapestItem(){
+       if (itemsInventory.isEmpty()){
+           System.out.println("Inventory empty!");
+       }
+
+       Item cheapest = itemsInventory.get(0);
+        for (Item it: itemsInventory) {
+            if (it.getPrice() < cheapest.getPrice()) {
+                cheapest = it;
+            }
+        }
+        System.out.println("Cheapest item: " + cheapest);
+        return cheapest;
+    }
+
+
     public double getTotalPrice(){
         double total = 0;
         for (Item it: buyersCart){
@@ -65,8 +81,9 @@ public class Store {
             System.out.println("\n===MENU===");
             System.out.println("1. Add Item to cart.");
             System.out.println("2. Find item by name.");
-            System.out.println("3. Pay & Print receipt.");
-            System.out.println("4. Exit Online Store.");
+            System.out.println("3. Item sorted by cheapest.");
+            System.out.println("4. Pay & Print receipt.");
+            System.out.println("5. Exit Online Store.");
 
             String choice = ui.promptText("\nChoose:");
 
@@ -83,8 +100,9 @@ public class Store {
                     String findItem = ui.promptText("Find item by name: ");
                     findItemByName(findItem);
                 }
-                case "3" -> printReceipt();
-                case "4" -> runs = false;
+                case "3" -> findCheapestItem();
+                case "4" -> printReceipt();
+                case "5" -> runs = false;
                 default  -> System.out.println("Invalid choice, try again.");
             }
 
