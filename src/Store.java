@@ -36,7 +36,7 @@ public class Store {
 
     }
 
-    public Item findItemByName(String name){
+   /* public Item findItemByName(String name){
         for (Item it: itemsInventory){
         if (it.getItemName().equalsIgnoreCase(name)){
             System.out.println("Item found: "+ name);
@@ -45,7 +45,7 @@ public class Store {
         }
         System.out.println("Item invalid!!");
         return null;
-    }
+    }*/
 
     public Item findCheapestItem(){
        if (itemsInventory.isEmpty()){
@@ -62,7 +62,7 @@ public class Store {
         return cheapest;
     }
 
-    public Item findItemByPart(String part){
+    public Item findItemBySearch(String part){
 
         for (Item it: itemsInventory){
             if (it.getItemName().contains(part)){
@@ -103,9 +103,8 @@ public class Store {
             System.out.println("1. Add Item to cart.");
             System.out.println("2. Find item by name.");
             System.out.println("3. Item sorted by cheapest.");
-            System.out.println("4. Find item by searching its alphabets.");
-            System.out.println("5. Pay & Print receipt.");
-            System.out.println("6. Exit Online Store.");
+            System.out.println("4. Pay & Print receipt.");
+            System.out.println("5. Exit Online Store.");
 
             String choice = ui.promptText("\nChoose:");
 
@@ -120,16 +119,12 @@ public class Store {
 
                 }
                 case "2" ->{
-                    String findItem = ui.promptText("Find item by name: ");
-                    findItemByName(findItem);
+                    String findItem = ui.promptText("Search for item by name: ");
+                    findItemBySearch(findItem);
                 }
                 case "3" -> findCheapestItem();
-                case "4" -> {
-                    String part = ui.promptText("Search for the item: ");
-                    findItemByPart(part);
-                }
-                case "5" -> printReceipt();
-                case "6" -> runs = false;
+                case "4" -> printReceipt();
+                case "5" -> runs = false;
                 default  -> System.out.println("Invalid choice, try again.");
             }
 

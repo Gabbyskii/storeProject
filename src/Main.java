@@ -4,14 +4,11 @@ public class Main {
     public static void main(String[] args){
         Store fotex = new Store("Litto Store");
 
-        fotex.addToItemInventory(new Item("butter", 15.00));
-        fotex.addToItemInventory(new Item("bread", 20.00));
-        fotex.addToItemInventory(new Item("chips", 18.00));
-        fotex.addToItemInventory(new Item("deodorant", 13.00));
-        fotex.addToItemInventory(new Item("køkkenrulle", 25.49));
-
-        Item item1 = new Item("milk", 19.00);
-        fotex.addToItemInventory(item1);
+        FileIO file = new FileIO();
+        ArrayList<Item>loadedItems = file.itemReader("src/items.csv");
+        for (Item it: loadedItems){
+            fotex.addToItemInventory(it);
+        }
 
         fotex.storeMenu();
 
