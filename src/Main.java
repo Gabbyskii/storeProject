@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args){
-        Store fotex = new Store("Litto Store");
+        Store fotex = new Store("Gabski Store");
 
         FileIO file = new FileIO();
         ArrayList<Item>loadedItems = file.itemReader("src/items.csv");

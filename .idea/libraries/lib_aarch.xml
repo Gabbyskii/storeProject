@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="lib-aarch">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../Skole/javafx-sdk-aarch/lib" />
+    </CLASSES>
+    <JAVADOC />
+    <NATIVE>
+      <root url="file://$PROJECT_DIR$/../Skole/javafx-sdk-aarch/lib" />
+    </NATIVE>
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/../Skole/javafx-sdk-aarch/lib" recursive="false" />
+  </library>
+</component>

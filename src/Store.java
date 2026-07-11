@@ -85,6 +85,10 @@ public class Store {
 
     public void printReceipt(){
         int count = 1;
+        if (buyersCart.isEmpty()){
+            throw new IllegalArgumentException("Invalid: Your cart is empty!!");
+        }
+
         System.out.println("\n===Receipt for your Shopping today===");
         for (Item it: buyersCart){
             System.out.println(count + ". "+ it.getItemName() + " ("+ it.getPrice()+ "kr)");
