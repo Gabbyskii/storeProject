@@ -15,8 +15,17 @@ public class Store {
 
     public void addToCart(int index) {
         if (index >= 0 && index < itemsInventory.size()) {
-            buyersCart.add(itemsInventory.get(index));
             System.out.println("Added to cart: " + itemsInventory.get(index));
+            buyersCart.add(itemsInventory.get(index));
+        } else {
+            System.out.println("Invalid choice.");
+        }
+    }
+
+    public void removFromCart(int index) {
+        if (index >= 0 && index < buyersCart.size()) {
+            System.out.println("Removed from cart: " + buyersCart.get(index));
+            buyersCart.remove(buyersCart.get(index));
         } else {
             System.out.println("Invalid choice.");
         }
@@ -53,6 +62,18 @@ public class Store {
         return cheapest;
     }
 
+    public Item findItemByPart(String part){
+
+        for (Item it: itemsInventory){
+            if (it.getItemName().contains(part)){
+            System.out.println("Items with parts '"+ part + "' found:\n"+ it.getItemName());
+            return it;
+            }
+        }
+        System.out.println("No item with part available..");
+        return null;
+    }
+
 
     public double getTotalPrice(){
         double total = 0;
@@ -82,27 +103,33 @@ public class Store {
             System.out.println("1. Add Item to cart.");
             System.out.println("2. Find item by name.");
             System.out.println("3. Item sorted by cheapest.");
-            System.out.println("4. Pay & Print receipt.");
-            System.out.println("5. Exit Online Store.");
+            System.out.println("4. Find item by searching its alphabets.");
+            System.out.println("5. Pay & Print receipt.");
+            System.out.println("6. Exit Online Store.");
 
             String choice = ui.promptText("\nChoose:");
 
             switch (choice){
                 case "1" -> {
-                    System.out.println("===Items for sale===\n");
+                    System.out.println("===Items for sale===");
                     for (int i = 0; i < itemsInventory.size(); i++){
                         System.out.println((i+1)+ ". "+ itemsInventory.get(i));
                     }
                     int index = Integer.parseInt(ui.promptText("Choose item number:")) - 1;
                     addToCart(index);
+
                 }
                 case "2" ->{
                     String findItem = ui.promptText("Find item by name: ");
                     findItemByName(findItem);
                 }
                 case "3" -> findCheapestItem();
-                case "4" -> printReceipt();
-                case "5" -> runs = false;
+                case "4" -> {
+                    String part = ui.promptText("Search for the item: ");
+                    findItemByPart(part);
+                }
+                case "5" -> printReceipt();
+                case "6" -> runs = false;
                 default  -> System.out.println("Invalid choice, try again.");
             }
 

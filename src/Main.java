@@ -10,9 +10,10 @@ public class Main {
         fotex.addToItemInventory(new Item("deodorant", 13.00));
         fotex.addToItemInventory(new Item("køkkenrulle", 25.49));
 
+        Item item1 = new Item("milk", 19.00);
+        fotex.addToItemInventory(item1);
 
         fotex.storeMenu();
-
 
 
     }
