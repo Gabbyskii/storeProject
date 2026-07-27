@@ -3,8 +3,6 @@ package domain;
 import util.TextUI;
 import java.util.ArrayList;
 
-
-
 public class Store {
 
     private String storeName;
