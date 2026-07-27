@@ -1,4 +1,9 @@
+package domain;
+
+import util.TextUI;
 import java.util.ArrayList;
+
+
 
 public class Store {
 
@@ -31,28 +36,37 @@ public class Store {
         }
     }
 
+
+    public void removeFromCart(Item item) {
+        buyersCart.remove(item);
+    }
+
+    public ArrayList<Item> getCart() {
+        return buyersCart;
+    }
+
     public void addToItemInventory(Item item){
         itemsInventory.add(item);
 
     }
 
-   /* public Item findItemByName(String name){
-        for (Item it: itemsInventory){
+   /* public domain.Item findItemByName(String name){
+        for (domain.Item it: itemsInventory){
         if (it.getItemName().equalsIgnoreCase(name)){
-            System.out.println("Item found: "+ name);
+            System.out.println("domain.Item found: "+ name);
            return it;
           }
         }
-        System.out.println("Item invalid!!");
+        System.out.println("domain.Item invalid!!");
         return null;
     }*/
 
     public Item findCheapestItem(){
-       if (itemsInventory.isEmpty()){
-           System.out.println("Inventory empty!");
-       }
+        if (itemsInventory.isEmpty()){
+            System.out.println("Inventory empty!");
+        }
 
-       Item cheapest = itemsInventory.get(0);
+        Item cheapest = itemsInventory.get(0);
         for (Item it: itemsInventory) {
             if (it.getPrice() < cheapest.getPrice()) {
                 cheapest = it;
@@ -66,8 +80,8 @@ public class Store {
 
         for (Item it: itemsInventory){
             if (it.getItemName().contains(part)){
-            System.out.println("Items with parts '"+ part + "' found:\n"+ it.getItemName());
-            return it;
+                System.out.println("Items with parts '"+ part + "' found:\n"+ it.getItemName());
+                return it;
             }
         }
         System.out.println("No item with part available..");
@@ -96,6 +110,20 @@ public class Store {
         }
         System.out.println("==Total price of "+ buyersCart.size()
                 +" items: "+ getTotalPrice() + "kr==");
+    }
+
+    // Same info as printReceipt(), but returned as a String so the JavaFX GUI can show it in a popup
+    public String getReceiptText() {
+        StringBuilder sb = new StringBuilder();
+        int count = 1;
+        for (Item it : buyersCart) {
+            sb.append(count).append(". ").append(it.getItemName())
+                    .append(" (").append(it.getPrice()).append("kr)\n");
+            count++;
+        }
+        sb.append("\nTotal for ").append(buyersCart.size())
+                .append(" items: ").append(getTotalPrice()).append("kr");
+        return sb.toString();
     }
 
     public void storeMenu(){
